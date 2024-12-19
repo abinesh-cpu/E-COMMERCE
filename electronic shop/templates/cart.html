@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <h1>Electronic Store</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="/cart">Cart</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h2>Your Cart</h2>
+    <div class="cart-page">
+        {% if order %}
+        <div class="cart-items">
+            {% for item in order.items.all %}
+            <div class="cart-item">
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                <div class="item-details">
+                    <h4>{{ item.product.name }}</h4>
+                    <p>${{ item.product.price }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="cart-total">
+            <p>Total: ${{ order.total_amount }}</p>
+            <a href="/checkout">
+                <button class="cart-checkout-button">Proceed to Checkout</button>
+            </a>
+        </div>
+        {% else %}
+        <p>Your cart is empty.</p>
+        {% endif %}
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Electronic Store. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronic Store</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <h1>Electronic Store</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="/cart">Cart</a></li>
+        </ul>
+    </nav>
+    <div class="navbar-search">
+        <input type="text" placeholder="Search Products">
+    </div>
+</header>
+
+<main>
+    <h2>Our Products</h2>
+    <div class="products">
+        {% for product in products %}
+        <div class="product-card">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <h3>{{ product.name }}</h3>
+            <p>${{ product.price }}</p>
+            <a href="{% url 'product_detail' product.id %}">
+                <button>View Details</button>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Electronic Store. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

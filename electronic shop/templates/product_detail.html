@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} - Product Detail</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <h1>Electronic Store</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="/cart">Cart</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="product-detail">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <div class="product-info">
+            <h2>{{ product.name }}</h2>
+            <p>{{ product.description }}</p>
+            <p class="price">${{ product.price }}</p>
+            <a href="/add-to-cart/{{ product.id }}">
+                <button>Add to Cart</button>
+            </a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Electronic Store. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
